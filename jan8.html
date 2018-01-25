@@ -8,7 +8,7 @@
   </head>
 
   <body bgcolor="lightgoldenrodyellow">
-  <svg height="800" width="800">
+  <svg height="1500" width="1500">
      <!--The set of 7 circles-->
     <circle cx="80" cy="245" r="35" stroke="black" stroke-width="2" fill="white" />
     <circle cx="150" cy="150" r="100" stroke="black" stroke-width="4" fill="white" />
@@ -23,16 +23,14 @@
       <line x1="250" y1="160" x2="290" y2="160" style="stroke:rgb(0,0,0);stroke-width:4" />
       <line x1="250" y1="140" x2="290" y2="130" style="stroke:rgb(0,0,0);stroke-width:2" />
 
- <!--The set of 4 circles on the line-->
-    <circle cx="320" cy="260" r="50" stroke="black" stroke-width="4" fill="red" />
-    <circle cx="320" cy="260" r="45" stroke="grey" stroke-width="2" fill="white" />
-    <circle cx="420" cy="240" r="50" stroke="black" stroke-width="4" fill="yellow" />
-    <circle cx="420" cy="240" r="45" stroke="grey" stroke-width="2" fill="white" />
+<!--The set of 2 semi circle-->
+      <path d="M 270,265
+               A 50,50 45 0,1 375,245"
+                stroke="black" fill="white" stroke-width="5" fill-opacity="0"/>
 
-    <path d="M270 270
-              L 370 250
-              A 320 260 0 0 1 370 250"
-              stroke="black" fill="white" stroke-width="5" fill-opacity="0"/>
+                <path d="M 380,245
+                         A 50,50 45 0,1 480,228"
+                          stroke="black" fill="white" stroke-width="5" fill-opacity="0"/>
 
      <!--The set of 6 circles under the line-->
       <circle cx="330" cy="285" r="30" stroke="black" stroke-width="4" fill="tan" />
@@ -52,9 +50,9 @@
       <line x1="430" y1="360" x2="480" y2="350" style="stroke:rgb(0,0,0);stroke-width:2" />
 
       <!--Three lines above the semi-circle-->
-      <line x1="470" y1="220" x2="520" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
-      <line x1="460" y1="210" x2="510" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
-      <line x1="450" y1="200" x2="500" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
+      <line x1="470" y1="210" x2="520" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
+      <line x1="460" y1="200" x2="510" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
+      <line x1="450" y1="190" x2="500" y2="90" style="stroke:rgb(0,0,0);stroke-width:2" />
 
       <!--The blue circle-->
       <circle cx="610" cy="190" r="40" stroke="black" stroke-width="2" fill="blue" />
@@ -155,12 +153,91 @@
     <circle cx="540" cy="78" r="1" fill="black" stroke="black" stroke-width="1" />
     <circle cx="540" cy="74" r="1" fill="black" stroke="black" stroke-width="1" />
 
-    <path d="M"
+
+    <!--The set of black and red triangles-->
+    <polygon points="650,120 620,50 650,40" style="fill:white;stroke:black;stroke-width:1" />
+    <polygon points="650,120 645,105 650,100" style="fill:black;stroke:black;stroke-width:1" />
+    <polygon points="645,105 650,100 650.5,95 641,99" style="fill:white;stroke:black;stroke-width:1" />
+    <polygon points="641,99 650.5,95 650.5,88 638,92" style="fill:yellow;stroke:black;stroke-width:1" />
+    <polygon points="638,92 650.5,88 650.5,80.5 635,84" style="fill:red;stroke:black;stroke-width:1" />
+    <polygon points="635,84 650.5,80.5 650.5,70.5 632,76" style="fill:black;stroke:black;stroke-width:1" />
+    <polygon points="632,76 650.5,70.5 650.5,60 627.5,66" style="fill:white;stroke:black;stroke-width:1" />
+    <polygon points="627.5,66 650.5,60 650,50 623,56" style="fill:yellow;stroke:black;stroke-width:1" />
 
 
 
+    <!--The yelllow green square-->
 
+       <rect x="850" y="138" width="15" height="15"
+       style="fill:white;stroke:black;stroke-width:2" />
+       <rect x="865" y="138" width="15" height="15"
+       style="fill:#6AA722;stroke:black;stroke-width:2" />
+       <rect x="880" y="138" width="15" height="15"
+       style="fill:#F3C139;stroke:black;stroke-width:2" />
 
+       <rect x="850" y="153" width="15" height="15"
+       style="fill:#6AA722;stroke:black;stroke-width:2" />
+       <rect x="865" y="153" width="15" height="15"
+       style="fill:#F3C139;stroke:black;stroke-width:2" />
+       <rect x="880" y="153" width="15" height="15"
+       style="fill:#6AA722;stroke:black;stroke-width:2" />
+
+       <rect x="850" y="168" width="15" height="15"
+       style="fill:#F3C139;stroke:black;stroke-width:2" />
+       <rect x="865" y="168" width="15" height="15"
+       style="fill:#6AA722;stroke:black;stroke-width:2" />
+       <rect x="880" y="168" width="15" height="15"
+       style="fill:white;stroke:black;stroke-width:2" />
+
+       <!--The Big Triangle-->
+       <polygon points="750,80 680,380 800,380" style="fill:white;stroke:black;stroke-width:1" />
+
+      <line x1="680" y1="380" x2="665" y2="450" style="stroke:rgb(0,0,0);stroke-width:1" />
+
+      <!--The vertical rectangle-->
+        <path d="M 640,110 L 750,200 L 640,330 "
+               style="stroke:green;stroke-width:5;fill:transparent" />
+       <path d="M 640,120 L 735,205 L 640,320"
+       style="stroke:green;stroke-width:3;fill:transparent" />
+
+       <!--Four semi-circle-->
+       <path d="M 710,380
+                A 30,30 0 0,1 780,380"
+                stroke="black" fill="green" stroke-width="5" />
+
+      <path d="M 720,380
+              A 25,25 0 0,1 770,380"
+              stroke="black" fill="white" stroke-width="2" />
+
+      <path d="M 710,380
+              A 30,30 0 1,0 780,380"
+              stroke="yellow" fill="lightgoldenrodyellow" stroke-width="4" />
+
+              <path d="M 720,380
+                      A 25,25 0 1,0 770,380"
+                      stroke="black" fill="black" stroke-width="2" />
+
+    <line x1="560" y1="380" x2="860" y2="380" style="stroke:rgb(0,0,0);stroke-width:2" />
+
+    <!--THe Pencil-->
+<g transform="rotate(-35 850 300)">
+     <polygon points="850,300 920,250 920,270" style="fill:white;stroke:black;stroke-width:1" />
+     <polygon points="850,300 920,270 920,290" style="fill:white;stroke:black;stroke-width:1" />
+     <polygon points="850,300 920,290 920,310" style="fill:white;stroke:black;stroke-width:1" />
+     <polygon points="850,300 920,310 920,330" style="fill:white;stroke:black;stroke-width:1" />
+     
+     <rect x="920" y="250" width="40" height="40"
+     style="fill:red;stroke:black;stroke-width:1" />
+
+     <rect x="920" y="290" width="40" height="40"
+     style="fill:#EEE8AA;stroke:black;stroke-width:1" />
+
+     <rect x="960" y="250" width="40" height="40"
+     style="fill:#EEE8AA;stroke:black;stroke-width:1" />
+
+     <rect x="960" y="290" width="40" height="40"
+     style="fill:black;stroke:black;stroke-width:1" />
+</g>
 
 
 
