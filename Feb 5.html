@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8" />
+   <title>
+    What is D3?
+   </title>
+   <link href="style.css" rel="stylesheet"
+  </head>
+
+  <body id="myBody">
+    <div class="nav_bars">
+      <div>Home</div>
+    </div>
+    <svg id="viz"></svg>
+  </body>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+var body = document.getElementById("myBody");
+body.style.backgroundColor = "green";
+body.style.fontFamily = "Comic Sans MS";
+body.id = "newId";
+
+  var body = d3.select("body")
+  .style("background-color","#42bff4")
+  .style("font-family", "Times New Roman")
+  .attr("id","myBody");
+
+  var myData = [26,60,30,40];
+  var newData = [35,6,18,50,30];
+  var drawCircles = function(dataArray){
+
+    var svg = d3.select("#viz");
+
+    var dots = svg.selectAll(".dot")
+      .data(dataArray);
+//enter circles
+    dots
+    .enter()
+    .append("circle")
+      .attr("class", "dot")
+      .attr("r",0)
+      .attr("cx", function(dataPoint, index){
+        return 25 + (index*50);
+      })
+      .attr("cy", 30)
+      .attr("fill","grey")
+      .transition()
+      .duration(1000)
+      .attr("r", function(dataPoint){
+        return dataPoint / 2;
+      })
+//update circles
+      dots
+      .transition()
+      .duration(1000)
+      .attr("r", function(dataPoint){
+        return dataPoint / 2;
+      })
+      .attr("fill","green");
+//exit circles
+      dots.exit()
+      .transition()
+      .duration(1000)
+      .attr("r",0)
+      .remove();
+  };
+
+drawCircles(myData);
+
+  </script>
+</html>

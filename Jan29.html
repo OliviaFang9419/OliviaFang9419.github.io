@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8" />
+   <title>
+     Xiaoran's Homepage
+   </title>
+   <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body bgcolor="lightgoldenrodyellow">
+    <a href="Kandinsky.html">Here is the first assignment.</a>
+    <p class="comicsans">
+    Welcome to my page!
+    </p>
+    <p class="comicsans" id="blueParagraph">
+      Here's another page!
+    </p>
+    <script>
+    function helloFunction(){
+      alert("Hello, World!");
+    }
+    var myNumber = 42;
+
+    console.log(myNumber);
+
+    myNumber = myNumber + 10;
+
+    console.log(myNumber);
+
+    var bigNumber = myNumber >1500
+
+    console.log(bigNumber);
+
+    var myArray = ["orange",bigNumber,"blue","red","purple"];
+
+    console.log(myArray)
+
+    var myString = "Javascript is super helpful in debugging!"
+
+    console.log("D3 and " + myString)
+
+    var myUser = {
+      "name":"Xiaoran",
+      "color":"red",
+      "last-login":"1/29/2018"
+    };
+
+
+    console.log(myUser.name);
+
+    var sayHello = function(name){
+      var newNumber = myNumber + 100;
+      console.log(newNumber);
+    }
+    sayHello("Xiaoran");
+    sayHello("Dave");
+    //console.log(name);
+
+var plusTen = function(num){
+  var x = num + 10;
+  return x;
+}
+
+var thirty = plusTen(20);
+console.log(thirty);
+
+
+
+        document.getElementById("blueParagraph").innerHTML = "Hello "+ myUser.name;
+
+    </script>
+
+</html>

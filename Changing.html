@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8" />
+   <title>
+    Changing
+   </title>
+   <link href="style.css" rel="stylesheet">
+
+  </head>
+<body id="myBody">
+  <button onclick="drawChart()">Try it!</button>
+      <div class="chart">
+    </div>
+  </body>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var data = [4, 8, 15, 16, 23, 42];
+var newData = [8, 16, 30, 32, 46, 84];
+
+var x = d3.scale.linear()
+  .domain([0,d3.max(data)])
+  .range([0,240])
+
+
+var drawChart = function(dataArray){
+   d3.select(".chart")
+      .selectAll("div")
+      .data(data)
+
+  .enter()
+  .append("div")
+  .style("width", function(d){
+    return x(d) + "px";
+   })
+   .text(function(d){
+     return d;
+   })
+  .transition()
+  .duration(1000)
+  .style("width", function(d){
+    return x(d*2) + "px";
+  })
+  .style("color","lightgoldenrodyellow")
+  .text(function(d){
+    return d;
+  })
+
+//update dataArray
+
+  .transition()
+  .duration(1000)
+  .style('width', function(d){
+    return x(d*4) + "px";
+  })
+  .style("color"," #6b5b95")
+
+  var chart = d3.selectAll("chart")
+  .data([23,42]);
+  chart.exit().remove();
+}
+
+drawChart(data);
+
+
+</script>
+
+</html>

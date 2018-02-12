@@ -1,0 +1,37 @@
+
+.comicsans{
+  color:yellow;
+  font-family:"Comic Sans MS",sans-serif,cursive;
+  font-size: 50px;
+}
+
+.charts{
+    color:yellow;
+    font-family:"Comic Sans MS",sans-serif,cursive;
+    font-size: 50px;
+  }
+
+#myAnswer {
+  color:blue;
+  font-family:"Comic Sans MS", cursive, sans-serif;
+  font-weight:500px;
+}
+
+.nav_bars{
+  color:black;
+  font-family:"Comic Sans MS", cursive, sans-serif;
+  font-size:30px;
+}
+.chart div{
+  font: 20px sans-serif;
+  background-color: lightseagreen;
+  padding: 3px;
+  margin: 2px;
+  text-align: right;
+}
+
+#myButton{
+  color:black;
+  font-family:"Comic Sans MS", cursive, sans-serif;
+  font-size:30px;
+}
