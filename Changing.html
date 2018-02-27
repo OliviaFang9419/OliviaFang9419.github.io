@@ -10,7 +10,7 @@
 
   </head>
 <body id="myBody">
-  <button onclick="drawChart()">Try it!</button>
+  <button onclick="drawChart(newData)">Try it!</button>
       <div class="chart">
     </div>
   </body>
@@ -27,11 +27,11 @@ var x = d3.scale.linear()
 
 
 var drawChart = function(dataArray){
-   d3.select(".chart")
+   var chart = d3.select(".chart")
       .selectAll("div")
-      .data(data)
+      .data(dataArray);
 
-  .enter()
+  chart.enter()
   .append("div")
   .style("width", function(d){
     return x(d) + "px";
@@ -47,10 +47,10 @@ var drawChart = function(dataArray){
   .style("color","lightgoldenrodyellow")
   .text(function(d){
     return d;
-  })
+  });
 
 //update dataArray
-
+  chart
   .transition()
   .duration(1000)
   .style('width', function(d){
@@ -58,8 +58,8 @@ var drawChart = function(dataArray){
   })
   .style("color"," #6b5b95")
 
-  var chart = d3.selectAll("chart")
-  .data([23,42]);
+  // var chart = d3.selectAll("chart")
+  // .data([23,42]);
   chart.exit().remove();
 }
 
