@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8" />
+   <title>
+    Loading Data!
+   </title>
+   <link href="style.css" rel="stylesheet"
+  </head>
+
+  <body id="myBody">
+    <div class="nav_bars">
+      <div>Home</div>
+    </div>
+    <svg id="viz"></svg>
+  </body>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+<script>
+var distances = [
+  {name: "store", distance: 0.2},
+  {name: "school", distance: 1.2},
+  {name: "family", distance: 0.7},
+  {name: "friend", distance: 4},
+  {name: "work", distance: 3}
+];
+var padding = 100;
+var maxDistance = d3.max(distances, function(d){
+  return d.distance;
+});
+
+var xScale = d3.scaleLinear()
+  .domain([0, maxDistance])
+  .range([padding, window.innerWidth - padding * 2]);
+
+var svg = d3.select("#viz")
+  .attr("width", window.innerWidth)
+  .attr("height", window.innerHeight);
+
+var xAxis = d3.axisBottom(xScale);
+d3.select("g#xAxis")
+  .attr("transform", "translate(0, 150)")
+  .call(xAxis)
+var firstX = xScale(data[0]);
+
+d3.selectAll("circle").on("click". function(d){
+  console.log(d.name);
+});
+
+var axis = d3.axisBottom(xScale);
+d3.select("g").call(axis);
+
+  </script>
+  </html>
