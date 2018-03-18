@@ -14,20 +14,18 @@
     </div>
     <svg id="viz"></svg>
   </body>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+
   <script>
-  d3.csv("/Users/oliviafang/Downloads/Mass_Shooting_Data_2017.csv", function(error, data){
+
+
+ d3.csv("Mass_Shooting_Data_2017.csv", function(error, data){
     if(error){
       console.log("Error!")
     }else{
-      console.log("CSV File")
-      console.log(data)
       console.log(data);
-      data.forEach(function(d){
-        d.value = parseFloat(d.value);
-    })
     }
-  })
+  });
+
 
   </script>
   </html>
