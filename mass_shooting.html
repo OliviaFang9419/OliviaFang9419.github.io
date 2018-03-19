@@ -14,7 +14,7 @@
     </div>
     <svg id="viz"></svg>
   </body>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
 
 
@@ -25,6 +25,14 @@
       console.log(data);
     }
   });
+
+  d3.csv("Mass_Shooting_Data_2016.csv", function(error, data){
+     if(error){
+       console.log("Error!")
+     }else{
+       console.log(data);
+     }
+   });
 
 
   </script>
