@@ -1,15 +1,17 @@
 /** This is a comment that the browser will ignore,
 * Put your CSS code into this file
 */
+/*this is the indetation from the left */
 .indent{
-  margin-left: 10px;
+  margin-left: 20px;
   padding-left: 0;
 }
 
+/*this is the font of the h1 tag*/
 .font{
   font-family: "Times New Roman", sans-serif;
 }
-
+/*this is the size of the h1 tag*/
 .font-size{
-  font-size: 100px;
+  font-size: 50px;
 }
