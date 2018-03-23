@@ -1,4 +1,20 @@
-/* use this to put borders around things*/
-.thin_border{
-    border:1px solid black;
+/** This is a comment that the browser will ignore,
+* Put your CSS code into this file
+*/
+h1 {
+	/*change the text color to white and center*/
+    color: white;
+    text-align: center;
+	
 }
+h1 {
+	/*change the text color to red and right*/
+    text-align: right;
+    color: red;
+	 
+}
+h1 {
+	/*change the text color to maroon and a margin left with a pixel of 40 */
+    color: maroon;
+    margin-left: 40px;
+} 
