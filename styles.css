@@ -11,7 +11,8 @@
 .font{
   font-family: "Times New Roman", sans-serif;
 }
-/*this is the size of the h1 tag*/
-.font-size{
-  font-size: 50px;
+/*this is the hover effect of h1 tag*/
+.hovering:hover{
+  color:red;
+  background:black;
 }
