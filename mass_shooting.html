@@ -3,20 +3,64 @@
   <head>
    <meta charset="utf-8" />
    <title>
-    Loading Data!
+    Mass shooting in the US(2017vs.2016)
    </title>
    <link href="style.css" rel="stylesheet"
   </head>
 
   <body id="myBody">
-    <div class="nav_bars">
-      <div>Home</div>
-    </div>
-    <svg id="viz"></svg>
+    <svg id="map" width=600 height=400>
+      <rect width=600 height=400 fill="lightgoldenrodyellow"></rect>
+    </svg>
   </body>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script>
 
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script>
+  d3.queue()
+    .defer(d3.json, "usa.json")
+    .defer(d3.csv, "Mass_Shooting_Data_2017.csv")
+    .defer(d3.csv, "Mass_Shooting_Data_2016.csv")
+    .awaitAll(function(error,dataArray){
+      var data = dataArray[0];
+      var jsonData = dataArray[1];
+      var csvData = dataArray[2];
+      var textData = dataArray[3];
+      console.log(dataArray);
+
+      var geoJSON = topojson.feature(data, data.objects.states)
+      console.log(geoJSON)
+//filter the DC
+      geoJSON.features = geoJSON.features.filter(function(feature){
+              return feature.id != "DC";
+            })
+//
+      var proj = d3.geoAlbersUsa()
+      .fitSize([600,400], geoJSON);
+
+      var path = d3.geoPath()
+      .projection(proj);
+
+
+      var states = d3.select("#map").selectAll("path")
+      .data(geoJSON.features);
+
+      states.enter().append("path")
+      .attr("fill", function(feature){
+        if(feature.id == "AZ"){
+          return "red"
+        }
+        else{
+          return "grey"
+        }
+      })
+      .attr("stroke", "white")
+      .attr("stroke-width", 1)
+      .attr("d",function(feature){
+        return path(feature);
+      });
+
+    });
 
  d3.csv("Mass_Shooting_Data_2017.csv", function(error, data){
     if(error){
@@ -34,7 +78,7 @@
        console.log("CSV File")
        console.log(data);
      }
-   });
+   })
 
 
   </script>
