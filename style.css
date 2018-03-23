@@ -1,20 +1,19 @@
 /** This is a comment that the browser will ignore,
 * Put your CSS code into this file
 */
-h1 {
-	/*change the text color to white and center*/
-    color: white;
+
+/** Code by : Luis Manuel Rodriguez Gonzalez **/
+
+h1{
+    /* Font size */
+    font-size: 55px;
+
+    /* Family font */
+    font-family: monospace;
+
+    /* Font color */
+    color: brown;
+
+    /* Text aling = center */
     text-align: center;
-	
 }
-h1 {
-	/*change the text color to red and right*/
-    text-align: right;
-    color: red;
-	 
-}
-h1 {
-	/*change the text color to maroon and a margin left with a pixel of 40 */
-    color: maroon;
-    margin-left: 40px;
-} 
