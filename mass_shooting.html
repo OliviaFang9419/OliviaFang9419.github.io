@@ -12,6 +12,7 @@
     <svg id="map" width=600 height=400>
       <rect width=600 height=400 fill="lightgoldenrodyellow"></rect>
     </svg>
+    <div id="tooltip"></div>
   </body>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -60,40 +61,21 @@
       .attr("d",function(feature){
         return path(feature);
       })
-
-      d3.select("states").on("mouseenter", function(d){
-        d3.select("states")
+      .on("mouseenter", function(d){
+        d3.select("#tooltip")
           .style("display", "block")
           .style("top", "130px")
           .text(d.kills);
       })
       .on("mouseleave", function(d){
-        d3.select("states")
+        d3.select("#tooltip")
           .style("display", "none");
       })
       .transition().duration(1500)
 
-
     });
 
- d3.csv("Mass_Shooting_Data_2017.csv", function(error, data){
-    if(error){
-      console.log("Error!")
-    }else{
-      console.log("2017 Mass Shooting CSV File")
-      console.log(data);
-    }
-  });
-
-  d3.csv("Mass_Shooting_Data_2016.csv", function(error, data){
-     if(error){
-       console.log("Error!")
-     }else{
-       console.log("2016 Mass Shooting CSV File")
-       console.log(data);
-     }
-   })
-
+ 
 
   </script>
   </html>
