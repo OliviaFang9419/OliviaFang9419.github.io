@@ -30,10 +30,7 @@
 
       var geoJSON = topojson.feature(data, data.objects.states)
       console.log(geoJSON)
-//filter the DC
-      geoJSON.features = geoJSON.features.filter(function(feature){
-              return feature.id != "DC";
-            })
+
 //
       var proj = d3.geoAlbersUsa()
       .fitSize([600,400], geoJSON);
@@ -41,13 +38,17 @@
       var path = d3.geoPath()
       .projection(proj);
 
-
       var states = d3.select("#map").selectAll("path")
       .data(geoJSON.features);
 
+      var shootingData=[
+        {state: "FL", kills: 29, wounded:112},
+        {state: "AZ", kills: 13, wounded:19}
+      ];
+
       states.enter().append("path")
       .attr("fill", function(feature){
-        if(feature.id == "AZ"){
+        if(feature.id == "FL"){
           return "red"
         }
         else{
@@ -58,7 +59,20 @@
       .attr("stroke-width", 1)
       .attr("d",function(feature){
         return path(feature);
-      });
+      })
+
+      d3.select("states").on("mouseenter", function(d){
+        d3.select("states")
+          .style("display", "block")
+          .style("top", "130px")
+          .text(d.kills);
+      })
+      .on("mouseleave", function(d){
+        d3.select("states")
+          .style("display", "none");
+      })
+      .transition().duration(1500)
+
 
     });
 
@@ -66,7 +80,7 @@
     if(error){
       console.log("Error!")
     }else{
-      console.log("CSV File")
+      console.log("2017 Mass Shooting CSV File")
       console.log(data);
     }
   });
@@ -75,7 +89,7 @@
      if(error){
        console.log("Error!")
      }else{
-       console.log("CSV File")
+       console.log("2016 Mass Shooting CSV File")
        console.log(data);
      }
    })
