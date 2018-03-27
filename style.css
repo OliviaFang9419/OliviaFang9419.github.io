@@ -1,20 +1,9 @@
-/** This is a comment that the browser will ignore,
-* Put your CSS code into this file
-*/
-h1 {
-	/*change the text color to white and center*/
-    color: white;
-    text-align: center;
-
-}
-h1 {
-	/*change the text color to red and right*/
-    text-align: right;
-    color: red;
-
-}
-h1 {
-	/*change the text color to maroon and a margin left with a pixel of 40 */
-    color: maroon;
-    margin-left: 40px;
-}  
+#tooltip {
+        background-color: white;
+        border: 1px solid black;
+        display: none;
+        font-family: sans-serif;
+        font-size: 16px;
+        padding: 10px;
+        position: absolute;
+      }

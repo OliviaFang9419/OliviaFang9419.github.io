@@ -5,7 +5,7 @@
    <title>
     Mass shooting in the US(2017vs.2016)
    </title>
-   <link href="style.css" rel="stylesheet"
+   <link href="style.css" rel="stylesheet" />
   </head>
 
   <body id="myBody">
@@ -24,15 +24,18 @@
     .defer(d3.csv, "Mass_Shooting_Data_2016.csv")
     .awaitAll(function(error,dataArray){
       var data = dataArray[0];
-      var jsonData = dataArray[1];
-      var csvData = dataArray[2];
-      var textData = dataArray[3];
+      var csvData2017 = dataArray[1];
+      csvData2017.forEach(function(d) {
+        d.wounded = parseFloat(d.wounded);
+        d.killed = parseFloat(d.killed);
+      });
+      var csvData2016 = dataArray[2];
       console.log(dataArray);
 
       var geoJSON = topojson.feature(data, data.objects.states)
       console.log(geoJSON)
 
-//
+
       var proj = d3.geoAlbersUsa()
       .fitSize([600,400], geoJSON);
 
@@ -46,6 +49,8 @@
         {state: "FL", kills: 29, wounded:112},
         {state: "AZ", kills: 13, wounded:19}
       ];
+
+
 
       states.enter().append("path")
       .attr("fill", function(feature){
@@ -61,21 +66,41 @@
       .attr("d",function(feature){
         return path(feature);
       })
-      .on("mouseenter", function(d){
+      .on("mouseover", function(d){
+        var stateData = csvData2017.filter(function(x) {
+          return x.state == d.id;
+        });
+        var killed = d3.sum(stateData, function(x) {
+          return x.killed;
+        });
         d3.select("#tooltip")
           .style("display", "block")
-          .style("top", "130px")
-          .text(d.kills);
+          .style("top", d3.event.pageY + "px")
+          .style("left", d3.event.pageX + "px")
+          .text("killed : " + killed);
       })
-      .on("mouseleave", function(d){
+      .on("mouseout", function(d){
         d3.select("#tooltip")
-          .style("display", "none");
+          .style("display", "none")
       })
-      .transition().duration(1500)
+      .transition().duration(500)
 
+      var points=[
+        {"name": "FL", "coords": [-80.1947, 25.7750]}
+      ]
+
+      var dots = d3.select("#map").selectAll("circle")
+      .data("points")
+
+      dots.enter().append("circle")
+        .attr("transform", function(point){
+          return "translate( " +proj(point.coords) + " )"
+        })
+        .attr("fill", "black")
+        .attr("r", 2);
     });
 
- 
+
 
   </script>
   </html>
