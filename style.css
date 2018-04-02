@@ -7,3 +7,8 @@
         padding: 10px;
         position: absolute;
       }
+#title{
+  font-family: "Times New Roman",cursive,sans-serif;
+  font-size: 100px;
+  margin-left: 40px;
+}

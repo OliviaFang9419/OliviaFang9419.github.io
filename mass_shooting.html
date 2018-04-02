@@ -9,10 +9,13 @@
   </head>
 
   <body id="myBody">
+
+    <p id="title">2017 Mass Shooting in the US </p>
     <svg id="map" width=600 height=400>
       <rect width=600 height=400 fill="lightgoldenrodyellow"></rect>
     </svg>
     <div id="tooltip"></div>
+
   </body>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -32,6 +35,15 @@
       var csvData2016 = dataArray[2];
       console.log(dataArray);
 
+      var dataExtent = d3.extent(csvData2017, function(d){
+        return d.killed;
+      })
+      console.log(dataExtent);
+
+      var colorScale = d3.scaleOrdinal()
+        .domain(dataExtent)
+        .range(["#ff0000","b3b300","#ff9933","#b38600","#993366"]);
+
       var geoJSON = topojson.feature(data, data.objects.states)
       console.log(geoJSON)
 
@@ -45,10 +57,6 @@
       var states = d3.select("#map").selectAll("path")
       .data(geoJSON.features);
 
-      var shootingData=[
-        {state: "FL", kills: 29, wounded:112},
-        {state: "AZ", kills: 13, wounded:19}
-      ];
 
 
 
@@ -83,22 +91,38 @@
         d3.select("#tooltip")
           .style("display", "none")
       })
-      .transition().duration(500)
+      .transition().duration(1000)
 
       var points=[
-        {"name": "FL", "coords": [-80.1947, 25.7750]}
+        {"name": "Miami", "coords": [-80.1947, 25.7750]},
+        {"name": "Jacksonville", "coords": [-81.655651,30.332184]}
       ]
 
       var dots = d3.select("#map").selectAll("circle")
-      .data("points")
+      .data(points)
 
       dots.enter().append("circle")
         .attr("transform", function(point){
           return "translate( " +proj(point.coords) + " )"
         })
         .attr("fill", "black")
-        .attr("r", 2);
+        .attr("r", 3)
+        .on("mouseover",function(d){
+          var stateData = csvData2017.filter(function(x) {
+            return x.state == d.id;
+          });
+          var killed = d3.sum(stateData, function(x) {
+            return x.killed;
+          });
+          d3.select("dots")
+            .style("display", "block")
+            .style("top", d3.event.pageY + "px")
+            .style("left", d3.event.pageX + "px")
+            .text("killed : " + killed);
+        })
     });
+
+
 
 
 
