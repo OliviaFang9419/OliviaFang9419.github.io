@@ -12,7 +12,7 @@
 
     <p id="title">Mass Shooting in the US </p>
     <button type="button" onclick="window.location.href='http://OliviaFang9419.github.io/mass_shooting.html'">2017</button>
-    <button type="button" onclick="">2016</button>
+    <button type="button" onclick="window.location.href='http://OliviaFang9419.github.io/mass_2016.html'">2016</button>
     <br></br>
     <svg id="map" width=1000 height=800>
       <rect width=1000 height=800 fill="lightgoldenrodyellow"></rect>
@@ -31,14 +31,14 @@
     .awaitAll(function(error,dataArray){
       var data = dataArray[0];
       var csvData2017 = dataArray[1];
-      csvData2017.forEach(function(d) {
+      var csvData2016 = dataArray[2];
+      csvData2016.forEach(function(d) {
         d.wounded = parseFloat(d.wounded);
         d.killed = parseFloat(d.killed);
       });
-      var csvData2016 = dataArray[2];
       console.log(dataArray);
 
-      var dataExtent = d3.extent(csvData2017, function(d){
+      var dataExtent = d3.extent(csvData2016, function(d){
         return d.killed;
       })
       console.log(dataExtent);
@@ -67,7 +67,7 @@
 
       states.enter().append("path")
       .attr("fill", function(d){
-        var stateData = csvData2017.filter(function(x) {
+        var stateData = csvData2016.filter(function(x) {
           return x.state == d.id;
         });
         var killed = d3.sum(stateData, function(x) {
@@ -82,7 +82,7 @@
         return path(feature);
       })
       .on("mouseover", function(d){
-        var stateData = csvData2017.filter(function(x) {
+        var stateData = csvData2016.filter(function(x) {
           return x.state == d.id;
         });
         var killed = d3.sum(stateData, function(x) {
