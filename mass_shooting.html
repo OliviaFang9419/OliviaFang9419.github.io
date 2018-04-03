@@ -10,9 +10,12 @@
 
   <body id="myBody">
 
-    <p id="title">2017 Mass Shooting in the US </p>
-    <svg id="map" width=600 height=400>
-      <rect width=600 height=400 fill="lightgoldenrodyellow"></rect>
+    <p id="title">Mass Shooting in the US </p>
+    <button type="button" onclick="window.location.href='http://OliviaFang9419.github.io/mass_shooting.html'">2017</button>
+    <button type="button" onclick="">2016</button>
+    <br></br>
+    <svg id="map" width=1000 height=800>
+      <rect width=1000 height=800 fill="lightgoldenrodyellow"></rect>
     </svg>
     <div id="tooltip"></div>
 
@@ -40,16 +43,18 @@
       })
       console.log(dataExtent);
 
-      var colorScale = d3.scaleOrdinal()
+      var colorScale = d3.scaleLinear()
         .domain(dataExtent)
-        .range(["#ff0000","b3b300","#ff9933","#b38600","#993366"]);
+        .range(["pink","red"]);
+
+
 
       var geoJSON = topojson.feature(data, data.objects.states)
       console.log(geoJSON)
 
 
       var proj = d3.geoAlbersUsa()
-      .fitSize([600,400], geoJSON);
+      .fitSize([1000,800], geoJSON);
 
       var path = d3.geoPath()
       .projection(proj);
@@ -61,13 +66,15 @@
 
 
       states.enter().append("path")
-      .attr("fill", function(feature){
-        if(feature.id == "FL"){
-          return "red"
-        }
-        else{
-          return "grey"
-        }
+      .attr("fill", function(d){
+        var stateData = csvData2017.filter(function(x) {
+          return x.state == d.id;
+        });
+        var killed = d3.sum(stateData, function(x) {
+          return x.killed;
+        });
+        var color = colorScale(killed);
+        return color;
       })
       .attr("stroke", "white")
       .attr("stroke-width", 1)
@@ -94,8 +101,18 @@
       .transition().duration(1000)
 
       var points=[
-        {"name": "Miami", "coords": [-80.1947, 25.7750]},
-        {"name": "Jacksonville", "coords": [-81.655651,30.332184]}
+        {"name": "Miami", "coords": [-81.515754, 27.664827]},
+        {"name": "Jacksonville", "coords": [-81.655651,30.332184]},
+        {"name": "Orlando", "coords": [-81.379236,28.538335]},
+        {"name": "Fort Lauderdale", "coords": [-80.137317,26.122439]},
+        {"name": "Jupiter", "coords": [-80.094209,26.934225]},
+        {"name": "Greenville", "coords": [-82.394010,34.852618]},
+        {"name": "Sanford", "coords": [-82.394010,34.852618]},
+        {"name": "Tampa", "coords": [-82.457178,27.950575]},
+        {"name": "Palm Bay", "coords": [-80.588665,28.034462]},
+        {"name": "Avon Park", "coords": [-81.506186,27.595867]}
+
+
       ]
 
       var dots = d3.select("#map").selectAll("circle")
@@ -106,7 +123,7 @@
           return "translate( " +proj(point.coords) + " )"
         })
         .attr("fill", "black")
-        .attr("r", 3)
+        .attr("r", 2)
         .on("mouseover",function(d){
           var stateData = csvData2017.filter(function(x) {
             return x.state == d.id;
@@ -120,6 +137,30 @@
             .style("left", d3.event.pageX + "px")
             .text("killed : " + killed);
         })
+//dots' transition
+        .transition()
+        .duration(1500)
+        .attr("r",4)
+//when moving to the dots there's tooltip showing
+        dots
+        .on("mouseover", function(d){
+          var stateData = csvData2017.filter(function(x) {
+            return x.state == d.id;
+          });
+          var killed = d3.sum(stateData, function(x) {
+            return x.killed;
+          });
+        d3.select("#tooltip")
+        .style("display", "block")
+        .style("top", d3.event.pageY + "px")
+        .style("left", d3.event.pageX + "px")
+        .text("killed : " + killed);
+      })
+      .on("mouseout", function(d){
+        d3.select("#tooltip")
+          .style("display", "none")
+})
+
     });
 
 
